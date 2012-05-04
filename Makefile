@@ -1,9 +1,8 @@
 SOURCE = profiling.rst
 TEX = profiling.tex
 OUTPUT = profiling.pdf
-PROG = python ~/notes/UtahPython/presentations/rst2beamer.py
 #TEX_PROG = /usr/texbin/pdflatex
-#PROG = rst2beamer
+PROG = ./rst2beamer.py
 TEX_PROG = pdflatex
 #VIEWER = open
 VIEWER = evince

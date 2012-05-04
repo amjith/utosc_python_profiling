@@ -1,0 +1,13 @@
+http://google.com/
+http://yahoo.com/
+http://bbc.co.uk
+http://gmail.com
+http://news.ycombinator.com
+http://reddit.com/r/programming
+http://npr.com
+http://www.github.com
+http://google.com/
+http://reader.google.com
+http://ycombinator.com
+http://reddit.com/r/comics
+http://reddit.com/r/coding

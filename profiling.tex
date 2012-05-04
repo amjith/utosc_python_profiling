@@ -149,6 +149,7 @@
   \label{python-profiling}}
 \author[Amjith Ramanujam]{Amjith Ramanujam}
 \date{@amjithr}
+\institute{UTOS}
 \maketitle
 
 % colors
@@ -183,7 +184,7 @@
 \frametitle{Profiling a Python Script}
 
 
-\begin{block}{ What }
+\begin{block}{ What is Profiling? }
 
 Where is the time spent?
 
@@ -201,9 +202,14 @@ Where is the time spent?
 
 \end{block}
 
-\begin{block}{ How? }
+\DUroletitlereference{In God we trust everyone else bring data.}
+\end{frame}
 
-Standard Library Profiling
+\begin{frame}[fragile]
+\frametitle{Profiling Tools}
+
+
+\begin{block}{ Standard Library }
 \begin{itemize}
 
 \item cProfile
@@ -211,9 +217,13 @@ Standard Library Profiling
 \item Profile  (older pure python implementation)
 
 \item hotshot  (deprecated)
+
+\item timeit
 \end{itemize}
 
-Third Party Profiling Libraries
+\end{block}
+
+\begin{block}{ Third Party }
 \begin{itemize}
 
 \item line\_profiler
@@ -221,7 +231,9 @@ Third Party Profiling Libraries
 \item memory\_profiler
 \end{itemize}
 
-Commercial Web Application Profiling
+\end{block}
+
+\begin{block}{ Commercial - Web Application }
 \begin{itemize}
 
 \item New Relic
@@ -231,22 +243,32 @@ Commercial Web Application Profiling
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{cProfile}
+
+
+\begin{block}{ \centering \LARGE cProfile }
+
+\centering \Large Introduction
+
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{Let's use cProfile}
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{import}\PY{+w}{ }\PY{n}{cProfile}
-\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{import}\PY{+w}{ }\PY{n+nb}{lcm}
-\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{cProfile}\PY{p}{.}\PY{n}{run}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{lcm.ver\PYZus{}1(2,}\PY{+w}{ }\PY{l+s}{3)'}\PY{p}{)}
-6\PY{+w}{ }\PY{k}{function}\PY{+w}{ }\PY{n}{calls}\PY{+w}{ }\PY{n}{in}\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{n}{seconds}
+\PYZdl{}\PY{+w}{ }\PY{n}{python}\PY{+w}{ }\PY{o}{-}\PY{n}{m}\PY{+w}{ }\PY{n}{cProfile}\PY{+w}{ }\PY{n+nb}{lcm}\PY{p}{.}\PY{n}{py}
+\PY{+w}{ }\PY{+w}{ }7780242\PY{+w}{ }\PY{k}{function}\PY{+w}{ }\PY{n}{calls}\PY{+w}{ }\PY{n}{in}\PY{+w}{ }4\PY{p}{.}474\PY{+w}{ }\PY{n}{seconds}
 
-\PY{n}{Ordered}\PY{+w}{ }\PY{n}{by}\PY{p}{:}\PY{+w}{ }\PY{n}{standard}\PY{+w}{ }\PY{n}{name}
-\PY{n}{ncalls}\PY{+w}{ }\PY{+w}{ }\PY{n}{tottime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{+w}{ }\PY{n}{cumtime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{n}{filename}\PY{p}{:}\PY{n}{lineno}\PY{p}{(}\PY{k}{function}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{o}{\PYZlt{}}\PY{n}{module}\PY{o}{\PYZgt{}}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{n+nb}{lcm}\PY{p}{.}\PY{n}{py}\PY{p}{:}1\PY{p}{(}\PY{n}{ver\PYZus{}1}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }2\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{max}\PY{p}{\PYZcb{}}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{l+s}{'}\PY{l+s}{\PYZus{}lsprof.Profiler'}\PY{+w}{ }\PY{n}{objects}\PY{p}{\PYZcb{}}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{min}\PY{p}{\PYZcb{}}
+\PY{+w}{ }\PY{n}{Ordered}\PY{+w}{ }\PY{n}{by}\PY{p}{:}\PY{+w}{ }\PY{n}{standard}\PY{+w}{ }\PY{n}{name}
+
+\PY{+w}{ }\PY{n}{ncalls}\PY{+w}{ }\PY{+w}{ }\PY{n}{tottime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{+w}{ }\PY{n}{cumtime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{n}{filename}\PY{p}{:}\PY{n}{lineno}\PY{p}{(}\PY{k}{function}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}474\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}474\PY{+w}{ }\PY{n+nb}{lcm}\PY{p}{.}\PY{n}{py}\PY{p}{:}3\PY{p}{(}\PY{o}{\PYZlt{}}\PY{n}{module}\PY{o}{\PYZgt{}}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }2\PY{p}{.}713\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }2\PY{p}{.}713\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}474\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}474\PY{+w}{ }\PY{n+nb}{lcm}\PY{p}{.}\PY{n}{py}\PY{p}{:}3\PY{p}{(}\PY{n+nb}{lcm}\PY{p}{)}
+3890120\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}881\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}881\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{max}\PY{p}{\PYZcb{}}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{method}\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{disable'}\PY{+w}{ }\PY{n}{of}\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{\PYZus{}lsprof.Profiler'}\PY{+w}{ }\PY{n}{objects}\PY{p}{\PYZcb{}}
+3890119\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}880\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}880\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{min}\PY{p}{\PYZcb{}}
 \end{Verbatim}
 
 \end{frame}
@@ -258,6 +280,7 @@ Commercial Web Application Profiling
 \textbf{Problem}
 
 Given two numbers a,b find the lowest number c that is divisible by both a and b.
+eg: lcm(2,3) is 6
 
 \pause
 
@@ -280,13 +303,15 @@ Given two numbers a,b find the lowest number c that is divisible by both a and b
 
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c}{\PYZsh{}}\PY{+w}{ }\PY{c}{lcm.py}
-\PY{k}{def}\PY{+w}{ }\PY{n+nf}{ver\PYZus{}1}\PY{p}{(}\PY{n}{arg1}\PY{p}{,}\PY{+w}{ }\PY{n}{arg2}\PY{p}{)}\PY{p}{:}
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{lcm}\PY{p}{(}\PY{n}{arg1}\PY{p}{,}\PY{+w}{ }\PY{n}{arg2}\PY{p}{)}\PY{p}{:}
 \PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{i}\PY{+w}{ }\PY{o}{=}\PY{+w}{ }\PY{n+nb}{max}\PY{p}{(}\PY{n}{arg1}\PY{p}{,}\PY{+w}{ }\PY{n}{arg2}\PY{p}{)}
 \PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{k}{while}\PY{+w}{ }\PY{n}{i}\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{+w}{ }\PY{p}{(}\PY{n}{arg1}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{arg2}\PY{p}{)}\PY{p}{:}
 \PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{k}{if}\PY{+w}{ }\PY{n}{i}\PY{+w}{ }\PY{o}{\PYZpc{}}\PY{+w}{ }\PY{n+nb}{min}\PY{p}{(}\PY{n}{arg1}\PY{p}{,}\PY{n}{arg2}\PY{p}{)}\PY{+w}{ }\PY{o}{==}\PY{+w}{ }\PY{l+m+mi}{0}\PY{p}{:}
 \PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{k}{return}\PY{+w}{ }\PY{n}{i}
 \PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{i}\PY{+w}{ }\PY{o}{+}\PY{o}{=}\PY{+w}{ }\PY{n+nb}{max}\PY{p}{(}\PY{n}{arg1}\PY{p}{,}\PY{n}{arg2}\PY{p}{)}
 \PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{k}{return}\PY{p}{(}\PY{n}{arg1}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }\PY{n}{arg2}\PY{p}{)}
+
+\PY{n}{lcm}\PY{p}{(}\PY{l+m+mi}{21498497}\PY{p}{,}\PY{+w}{ }\PY{l+m+mi}{3890120}\PY{p}{)}
 \end{Verbatim}
 
 \end{frame}
@@ -296,17 +321,17 @@ Given two numbers a,b find the lowest number c that is divisible by both a and b
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{cProfile}\PY{p}{.}\PY{n}{run}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{lcm.ver\PYZus{}1(21498497,}\PY{+w}{ }\PY{l+s}{38901201)'}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }42996996\PY{+w}{ }\PY{k}{function}\PY{+w}{ }\PY{n}{calls}\PY{+w}{ }\PY{n}{in}\PY{+w}{ }25\PY{p}{.}478\PY{+w}{ }\PY{n}{seconds}
+\PYZdl{}\PY{+w}{ }\PY{n}{python}\PY{+w}{ }\PY{o}{-}\PY{n}{m}\PY{+w}{ }\PY{n}{cProfile}\PY{+w}{ }\PY{n+nb}{lcm}\PY{p}{.}\PY{n}{py}
+\PY{+w}{ }\PY{+w}{ }7780242\PY{+w}{ }\PY{k}{function}\PY{+w}{ }\PY{n}{calls}\PY{+w}{ }\PY{n}{in}\PY{+w}{ }4\PY{p}{.}474\PY{+w}{ }\PY{n}{seconds}
 
-\PY{+w}{ }\PY{+w}{ }\PY{n}{Ordered}\PY{+w}{ }\PY{n}{by}\PY{p}{:}\PY{+w}{ }\PY{n}{standard}\PY{+w}{ }\PY{n}{name}
+\PY{+w}{ }\PY{n}{Ordered}\PY{+w}{ }\PY{n}{by}\PY{p}{:}\PY{+w}{ }\PY{n}{standard}\PY{+w}{ }\PY{n}{name}
 
-\PY{+w}{ }\PY{+w}{ }\PY{n}{ncalls}\PY{+w}{ }\PY{+w}{ }\PY{n}{tottime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{+w}{ }\PY{n}{cumtime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{n}{filename}\PY{p}{:}\PY{n}{lineno}\PY{p}{(}\PY{k}{function}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }25\PY{p}{.}478\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }25\PY{p}{.}478\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{o}{\PYZlt{}}\PY{n}{module}\PY{o}{\PYZgt{}}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }16\PY{p}{.}358\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }16\PY{p}{.}358\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }25\PY{p}{.}478\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }25\PY{p}{.}478\PY{+w}{ }\PY{n+nb}{lcm}\PY{p}{.}\PY{n}{py}\PY{p}{:}1\PY{p}{(}\PY{n}{ver\PYZus{}1}\PY{p}{)}
-21498497\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}583\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}583\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{max}\PY{p}{\PYZcb{}}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{l+s}{'}\PY{l+s}{\PYZus{}lsprof.Profiler'}\PY{+w}{ }\PY{n}{objects}\PY{p}{\PYZcb{}}
-21498496\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}537\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}537\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{min}\PY{p}{\PYZcb{}}
+\PY{+w}{ }\PY{n}{ncalls}\PY{+w}{ }\PY{+w}{ }\PY{n}{tottime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{+w}{ }\PY{n}{cumtime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{n}{filename}\PY{p}{:}\PY{n}{lineno}\PY{p}{(}\PY{k}{function}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}474\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}474\PY{+w}{ }\PY{n+nb}{lcm}\PY{p}{.}\PY{n}{py}\PY{p}{:}3\PY{p}{(}\PY{o}{\PYZlt{}}\PY{n}{module}\PY{o}{\PYZgt{}}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }2\PY{p}{.}713\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }2\PY{p}{.}713\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}474\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}474\PY{+w}{ }\PY{n+nb}{lcm}\PY{p}{.}\PY{n}{py}\PY{p}{:}3\PY{p}{(}\PY{n+nb}{lcm}\PY{p}{)}
+3890120\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}881\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}881\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{max}\PY{p}{\PYZcb{}}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{method}\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{disable'}\PY{+w}{ }\PY{n}{of}\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{\PYZus{}lsprof.Profiler'}\PY{+w}{ }\PY{n}{objects}\PY{p}{\PYZcb{}}
+3890119\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}880\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}880\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{min}\PY{p}{\PYZcb{}}
 \end{Verbatim}
 
 \end{frame}
@@ -335,65 +360,83 @@ Given two numbers a,b find the lowest number c that is divisible by both a and b
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{cProfile}\PY{p}{.}\PY{n}{run}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{lcm.ver\PYZus{}2(21498497,}\PY{+w}{ }\PY{l+s}{38901201)'}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }5\PY{+w}{ }\PY{k}{function}\PY{+w}{ }\PY{n}{calls}\PY{+w}{ }\PY{n}{in}\PY{+w}{ }5\PY{p}{.}889\PY{+w}{ }\PY{n}{seconds}
+\PYZdl{}\PY{+w}{ }\PY{n}{python}\PY{+w}{ }\PY{o}{-}\PY{n}{m}\PY{+w}{ }\PY{n}{cProfile}\PY{+w}{ }\PY{n+nb}{lcm}\PY{p}{.}\PY{n}{py}
+\PY{+w}{ }\PY{+w}{ }5\PY{+w}{ }\PY{k}{function}\PY{+w}{ }\PY{n}{calls}\PY{+w}{ }\PY{n}{in}\PY{+w}{ }0\PY{p}{.}774\PY{+w}{ }\PY{n}{seconds}
 
 \PY{n}{Ordered}\PY{+w}{ }\PY{n}{by}\PY{p}{:}\PY{+w}{ }\PY{n}{standard}\PY{+w}{ }\PY{n}{name}
-
 \PY{n}{ncalls}\PY{+w}{ }\PY{+w}{ }\PY{n}{tottime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{+w}{ }\PY{n}{cumtime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{n}{filename}\PY{p}{:}\PY{n}{lineno}\PY{p}{(}\PY{k}{function}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }5\PY{p}{.}889\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }5\PY{p}{.}889\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{o}{\PYZlt{}}\PY{n}{module}\PY{o}{\PYZgt{}}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }5\PY{p}{.}889\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }5\PY{p}{.}889\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }5\PY{p}{.}889\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }5\PY{p}{.}889\PY{+w}{ }\PY{n+nb}{lcm}\PY{p}{.}\PY{n}{py}\PY{p}{:}9\PY{p}{(}\PY{n}{ver\PYZus{}2}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}763\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}763\PY{+w}{ }\PY{n+nb}{lcm}\PY{p}{.}\PY{n}{py}\PY{p}{:}2\PY{p}{(}\PY{o}{\PYZlt{}}\PY{n}{module}\PY{o}{\PYZgt{}}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}763\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}763\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}763\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}763\PY{+w}{ }\PY{n+nb}{lcm}\PY{p}{.}\PY{n}{py}\PY{p}{:}2\PY{p}{(}\PY{n+nb}{lcm}\PY{p}{)}
 \PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{max}\PY{p}{\PYZcb{}}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{l+s}{'}\PY{l+s}{\PYZus{}lsprof.Profiler'}\PY{p}{\PYZcb{}}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{method}\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{disable'}\PY{+w}{ }\PY{n}{of}\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{\PYZus{}lsprof.Profiler'}\PY{+w}{ }\PY{n}{objects}\PY{p}{\PYZcb{}}
 \PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{min}\PY{p}{\PYZcb{}}
 \end{Verbatim}
 
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Profile from Command Line}
+\frametitle{pstats}
 
 
-Profiling a whole script.
+\begin{block}{ \centering \LARGE cProfile }
+
+\centering \Large Large Programs
+
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Profiling Large Programs}
+
 
 \begin{Verbatim}[commandchars=\\\{\}]
-\PYZdl{}\PY{+w}{ }\PY{n}{python}\PY{+w}{ }\PY{o}{-}\PY{n}{m}\PY{+w}{ }\PY{n}{cProfile}\PY{+w}{ }\PY{n}{script}\PY{p}{.}\PY{n}{py}
+\PY{+w}{ }\PYZdl{}\PY{+w}{ }\PY{n}{python}\PY{+w}{ }\PY{o}{-}\PY{n}{m}\PY{+w}{ }\PY{n}{cProfile}\PY{+w}{ }\PY{n}{shorten}\PY{p}{.}\PY{n}{py}
+\PY{+w}{ }\PY{+w}{ }95657\PY{+w}{ }\PY{k}{function}\PY{+w}{ }\PY{n}{calls}\PY{+w}{ }\PY{p}{(}93207\PY{+w}{ }\PY{n}{primitive}\PY{+w}{ }\PY{n}{calls}\PY{p}{)}\PY{+w}{ }\PY{n}{in}\PY{+w}{ }1\PY{p}{.}858\PY{+w}{ }\PY{n}{seconds}
 
-291502\PY{+w}{ }\PY{k}{function}\PY{+w}{ }\PY{n}{calls}\PY{+w}{ }\PY{p}{(}291393\PY{+w}{ }\PY{n}{primitive}\PY{+w}{ }\PY{n}{calls}\PY{p}{)}\PY{+w}{ }\PY{n}{in}\PY{+w}{ }4\PY{p}{.}368\PY{+w}{ }\PY{n}{seconds}
-
-\PY{n}{Ordered}\PY{+w}{ }\PY{n}{by}\PY{p}{:}\PY{+w}{ }\PY{n}{standard}\PY{+w}{ }\PY{n}{name}
+\PY{+w}{ }\PY{+w}{ }\PY{n}{Ordered}\PY{+w}{ }\PY{n}{by}\PY{p}{:}\PY{+w}{ }\PY{n}{standard}\PY{+w}{ }\PY{n}{name}
 
 \PY{n}{ncalls}\PY{+w}{ }\PY{+w}{ }\PY{n}{tottime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{+w}{ }\PY{n}{cumtime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{n}{filename}\PY{p}{:}\PY{n}{lineno}\PY{p}{(}\PY{k}{function}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{n}{UserDict}\PY{p}{.}\PY{n}{py}\PY{p}{:}4\PY{p}{(}\PY{n}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{n}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{.}\PY{n}{py}\PY{p}{:}1077\PY{p}{(}\PY{n}{Logger}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{n}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{.}\PY{n}{py}\PY{p}{:}1092\PY{p}{(}\PY{n}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{n}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{.}\PY{n}{py}\PY{p}{:}1122\PY{p}{(}\PY{n}{info}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{p}{.}\PY{p}{.}\PY{p}{.}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{p}{.}\PY{p}{.}\PY{p}{.}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }39\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}001\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{o}{\PYZlt{}}\PY{n}{lambda}\PY{o}{\PYZgt{}}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{o}{\PYZlt{}}\PY{n}{module}\PY{o}{\PYZgt{}}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{n}{AnnotatedAlias}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{n}{AnnotatedBooleanClauseList}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{n}{AnnotatedCTE}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{n}{AnnotatedClauseElement}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{n}{AnnotatedClauseList}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{n}{AnnotatedColumn}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{n}{AnnotatedColumnClause}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{n}{AnnotatedColumnElement}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{n}{AnnotatedCompoundSelect}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{n}{AnnotatedDelete}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{n}{AnnotatedFromClause}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{n}{AnnotatedFunction}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{\PYZlt{}}\PY{n}{string}\PY{o}{\PYZgt{}}\PY{p}{:}1\PY{p}{(}\PY{n}{AnnotatedFunctionElement}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{p}{.}\PY{p}{.}\PY{p}{.}\PY{p}{.}\PY{p}{.}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{p}{.}\PY{p}{.}\PY{p}{.}\PY{p}{.}\PY{p}{.}
 \end{Verbatim}
 
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Save and Analyze Profiles}
+\frametitle{Profiling Large Programs}
 
 
 \textbf{Problem:}
 \begin{itemize}
 
-\item Small functions are easy to profile in the repl.
-
 \item Profiles of bigger programs are messy.
 
-\item Sorting by function name is useless.
+\item Ordering by function name is useless.
 \end{itemize}
+
+\pause
 
 \textbf{Solution:}
 \begin{itemize}
 
 \item Save the profile to a file.
 
-\item Reload the profile and analyze the stats on the profile.
+\item Reload the profile and analyze using pStat.
 \end{itemize}
 \end{frame}
 
@@ -403,18 +446,11 @@ Profiling a whole script.
 
 Let's save the profile to a file.
 
-\textbf{Interpreter:}
-
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{cProfile}\PY{p}{.}\PY{n}{run}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{lcm.ver\PYZus{}3(21498497,}\PY{+w}{ }\PY{l+s}{38901201)'}\PY{p}{,}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{lcm.prof'}\PY{p}{)}
-\end{Verbatim}
+\PYZdl{}\PY{+w}{ }\PY{n}{python}\PY{+w}{ }\PY{o}{-}\PY{n}{m}\PY{+w}{ }\PY{n}{cProfile}\PY{+w}{ }\PY{o}{-}\PY{n}{o}\PY{+w}{ }\PY{n}{shorten}\PY{p}{.}\PY{n}{prof}\PY{+w}{ }\PY{n}{shorten}\PY{p}{.}\PY{n}{py}
 
-
-\textbf{Command Line:}
-
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYZdl{}\PY{+w}{ }\PY{n}{python}\PY{+w}{ }\PY{o}{-}\PY{n}{m}\PY{+w}{ }\PY{n}{cProfile}\PY{+w}{ }\PY{o}{-}\PY{n}{o}\PY{+w}{ }\PY{n}{script}\PY{p}{.}\PY{n}{prof}\PY{+w}{ }\PY{n}{script}\PY{p}{.}\PY{n}{py}
+\PYZdl{}\PY{+w}{ }\PY{n}{ls}
+\PY{n}{shorten}\PY{p}{.}\PY{n}{py}\PY{+w}{ }\PY{n}{shorten}\PY{p}{.}\PY{n}{prof}
 \end{Verbatim}
 
 \end{frame}
@@ -426,28 +462,38 @@ Let's save the profile to a file.
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{import}\PY{+w}{ }\PY{n}{pstats}
 \PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{p}\PY{+w}{ }\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{pstats}\PY{p}{.}\PY{n}{Stats}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{script.prof'}\PY{p}{)}
-\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{p}\PY{p}{.}\PY{n}{sort\PYZus{}stats}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{cumulative'}\PY{p}{)}
+\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{p}\PY{p}{.}\PY{n}{sort\PYZus{}stats}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{calls'}\PY{p}{)}
 \PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{p}\PY{p}{.}\PY{n}{print\PYZus{}stats}\PY{p}{(}5\PY{p}{)}
 
-402649\PY{+w}{ }\PY{k}{function}\PY{+w}{ }\PY{n}{calls}\PY{+w}{ }\PY{p}{(}402540\PY{+w}{ }\PY{n}{primitive}\PY{+w}{ }\PY{n}{calls}\PY{p}{)}\PY{+w}{ }\PY{n}{in}\PY{+w}{ }4\PY{p}{.}173\PY{+w}{ }\PY{n}{seconds}
-\PY{n}{Ordered}\PY{+w}{ }\PY{n}{by}\PY{p}{:}\PY{+w}{ }\PY{n}{cumulative}\PY{+w}{ }\PY{n}{time}
-\PY{n}{List}\PY{+w}{ }\PY{n}{reduced}\PY{+w}{ }\PY{n}{from}\PY{+w}{ }72\PY{+w}{ }\PY{n}{to}\PY{+w}{ }5\PY{+w}{ }\PY{n}{due}\PY{+w}{ }\PY{n}{to}\PY{+w}{ }\PY{n}{restriction}\PY{+w}{ }\PY{o}{\PYZlt{}}5\PY{o}{\PYZgt{}}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }95665\PY{+w}{ }\PY{k}{function}\PY{+w}{ }\PY{n}{calls}\PY{+w}{ }\PY{p}{(}93215\PY{+w}{ }\PY{n}{primitive}\PY{+w}{ }\PY{n}{calls}\PY{p}{)}\PY{+w}{ }\PY{n}{in}\PY{+w}{ }2\PY{p}{.}371\PY{+w}{ }\PY{n}{seconds}
 
-\PY{n}{ncalls}\PY{+w}{ }\PY{+w}{ }\PY{n}{tottime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{+w}{ }\PY{n}{cumtime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{n}{filename}\PY{p}{:}\PY{n}{lineno}\PY{p}{(}\PY{k}{function}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}009\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}009\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}173\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}173\PY{+w}{ }\PY{n}{log\PYZus{}profiler}\PY{p}{.}\PY{n}{py}\PY{p}{:}33\PY{p}{(}\PY{o}{\PYZlt{}}\PY{n}{module}\PY{o}{\PYZgt{}}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}161\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}161\PY{+w}{ }\PY{n}{log\PYZus{}profiler}\PY{p}{.}\PY{n}{py}\PY{p}{:}379\PY{p}{(}\PY{n}{main}\PY{p}{)}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }3\PY{p}{.}596\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }3\PY{p}{.}596\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }3\PY{p}{.}716\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }3\PY{p}{.}716\PY{+w}{ }\PY{n}{log\PYZus{}profiler}\PY{p}{.}\PY{n}{py}\PY{p}{:}276\PY{p}{(}\PY{n}{ParseDie}\PY{p}{)}
-249139\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}334\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}334\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{built}\PY{o}{-}\PY{n}{in}\PY{+w}{ }\PY{n}{method}\PY{+w}{ }\PY{n}{search}\PY{p}{\PYZcb{}}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}114\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}114\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}281\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}281\PY{+w}{ }\PY{n}{log\PYZus{}profiler}\PY{p}{.}\PY{n}{py}\PY{p}{:}213\PY{p}{(}\PY{n}{TrendSeriesParser}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{Ordered}\PY{+w}{ }\PY{n}{by}\PY{p}{:}\PY{+w}{ }\PY{n}{call}\PY{+w}{ }\PY{n}{count}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{List}\PY{+w}{ }\PY{n}{reduced}\PY{+w}{ }\PY{n}{from}\PY{+w}{ }1919\PY{+w}{ }\PY{n}{to}\PY{+w}{ }5\PY{+w}{ }\PY{n}{due}\PY{+w}{ }\PY{n}{to}\PY{+w}{ }\PY{n}{restriction}\PY{+w}{ }\PY{o}{\PYZlt{}}5\PY{o}{\PYZgt{}}
+
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{ncalls}\PY{+w}{ }\PY{+w}{ }\PY{n}{tottime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{+w}{ }\PY{n}{cumtime}\PY{+w}{ }\PY{+w}{ }\PY{n}{percall}\PY{+w}{ }\PY{n}{filename}\PY{p}{:}\PY{n}{lineno}\PY{p}{(}\PY{k}{function}\PY{p}{)}
+10819\PY{o}{/}10539\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}002\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}002\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{len}\PY{p}{\PYZcb{}}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }9432\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}002\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}002\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{method}\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{append'}\PY{+w}{ }\PY{n}{of}\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{list'}\PY{+w}{ }\PY{n}{objects}\PY{p}{\PYZcb{}}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }6061\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}003\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}003\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{isinstance}\PY{p}{\PYZcb{}}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }3092\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}004\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}005\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{o}{/}\PY{n}{home}\PY{o}{/}\PY{n}{amjith}\PY{o}{/}\PY{p}{.}\PY{n}{virtualenvs}\PY{o}{/}\PY{n}{url\PYZus{}shortener}\PY{o}{/}\PY{n}{lib}\PY{o}{/}\PY{n}{python2}\PY{p}{.}7\PY{o}{/}\PY{n}{sre\PYZus{}parse}\PY{p}{.}\PY{n}{py}\PY{p}{:}182\PY{p}{(}\PY{n}{\PYZus{}\PYZus{}next}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }2617\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}001\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}001\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}000\PY{+w}{ }\PY{p}{\PYZob{}}\PY{n}{method}\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{endswith'}\PY{+w}{ }\PY{n}{of}\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{str'}\PY{+w}{ }\PY{n}{objects}\PY{p}{\PYZcb{}}
 \end{Verbatim}
 
 \end{frame}
 
 \begin{frame}[fragile]
+\frametitle{RunSnakeRun}
+
+
+\begin{block}{ \centering \LARGE RunSnakeRun }
+
+\centering \Large Profile Viewer GUI
+
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
 \frametitle{GUI Profile Viewer}
 
-
-\DUroletitlereference{runsnakerun}
 \begin{itemize}
 
 \item A GUI viewer for python profiles
@@ -458,9 +504,7 @@ Let's save the profile to a file.
 \end{itemize}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-\PYZdl{}\PY{+w}{ }\PY{n}{pip}\PY{+w}{ }\PY{n}{install}\PY{+w}{ }\PY{+w}{ }\PY{n}{SquareMap}\PY{+w}{ }\PY{n}{RunSnakeRun}
-
-\PYZdl{}\PY{+w}{ }\PY{n}{runsnake}\PY{+w}{ }\PY{n}{script}\PY{p}{.}\PY{n}{prof}
+\PYZdl{}\PY{+w}{ }\PY{n}{pip}\PY{+w}{ }\PY{n}{install}\PY{+w}{ }\PY{n}{SquareMap}\PY{+w}{ }\PY{n}{RunSnakeRun}
 \end{Verbatim}
 
 \end{frame}
@@ -469,9 +513,25 @@ Let's save the profile to a file.
 \frametitle{Smart Optimization}
 
 
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYZdl{}\PY{+w}{ }\PY{n}{runsnake}\PY{+w}{ }\PY{n}{script}\PY{p}{.}\PY{n}{prof}
+\end{Verbatim}
+
+
 \noindent\makebox[\textwidth][c]{\includegraphics[height=0.75\textheight]{runsnake.png}}
 
 Clearly shows which parts are worth optimizing.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Decorators}
+
+
+\begin{block}{ \centering \LARGE Profiling with Decorators }
+
+\centering \Large Fine grained control
+
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -479,9 +539,9 @@ Clearly shows which parts are worth optimizing.
 
 \begin{itemize}
 
-\item Hide the profiling in a decorator.
+\item Easy to use.
 
-\item Useful for profiling a single function in a module.
+\item Profiling specific functions in a larger program.
 \end{itemize}
 
 \textbf{https://gist.github.com/1283366}
@@ -493,17 +553,19 @@ Clearly shows which parts are worth optimizing.
 
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{from}\PY{+w}{ }\PY{n}{profile\PYZus{}func}\PY{+w}{ }\PY{n}{import}\PY{+w}{ }\PY{n}{profile\PYZus{}func}
-
 \PY{p}{@}\PY{n}{profile\PYZus{}func}\PY{p}{(}\PY{p}{)}
-\PY{n}{def}\PY{+w}{ }\PY{n}{ParseDie}\PY{p}{(}\PY{n}{self}\PY{p}{,}\PY{+w}{ }\PY{n}{inpFile}\PY{p}{,}\PY{+w}{ }\PY{n}{XY}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{None}\PY{p}{)}\PY{p}{:}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{k}{if}\PY{+w}{ }\PY{n}{not}\PY{+w}{ }\PY{n}{XY}\PY{p}{:}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{XY}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{self}\PY{p}{.}\PY{n}{DieXY}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{k}{else}\PY{p}{:}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{self}\PY{p}{.}\PY{n}{DieXY}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{XY}
-\PY{p}{.}\PY{p}{.}\PY{p}{.}\PY{p}{.}
+\PY{n}{def}\PY{+w}{ }\PY{n}{convert\PYZus{}id\PYZus{}to\PYZus{}code}\PY{p}{(}\PY{n}{row\PYZus{}id}\PY{p}{)}\PY{p}{:}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{digits}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{p}{[}\PY{p}{]}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{base}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{len}\PY{p}{(}\PY{n}{ALPHABET}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{k}{while}\PY{+w}{ }\PY{n}{row\PYZus{}id}\PY{+w}{ }\PY{o}{\PYZgt{}}\PY{+w}{ }0\PY{p}{:}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{digits}\PY{p}{.}\PY{n}{append}\PY{p}{(}\PY{n}{row\PYZus{}id}\PY{+w}{ }\PY{c}{\PYZpc{}}\PY{+w}{ }\PY{c}{base)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{row\PYZus{}id}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{row\PYZus{}id}\PY{+w}{ }\PY{o}{/}\PY{+w}{ }\PY{n}{base}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{digits}\PY{p}{.}\PY{n}{reverse}\PY{p}{(}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{short\PYZus{}code}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{'}\PY{p}{.}\PY{n}{join}\PY{p}{(}\PY{p}{[}\PY{n}{ALPHABET}\PY{p}{[}\PY{n+nb}{i}\PY{p}{]}\PY{+w}{ }\PY{k}{for}\PY{+w}{ }\PY{n+nb}{i}\PY{+w}{ }\PY{n}{in}\PY{+w}{ }\PY{n}{digits}\PY{p}{]}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{k}{return}\PY{+w}{ }\PY{n}{short\PYZus{}code}
 
-\PYZdl{}\PY{+w}{ }\PY{n}{ls}\PY{+w}{ }\PY{o}{\PYZbs{}}\PY{o}{*}\PY{p}{.}\PY{n}{profile}
-\PY{n}{ParseDie\PYZus{}func}\PY{p}{.}\PY{n}{profile}
+\PYZdl{}\PY{+w}{ }\PY{n}{ls}\PY{+w}{ }\PY{p}{.}\PY{n}{profile}
+\PY{n}{convert\PYZus{}id\PYZus{}to\PYZus{}code}\PY{p}{.}\PY{n}{profile}
 \end{Verbatim}
 
 \end{frame}
@@ -511,19 +573,88 @@ Clearly shows which parts are worth optimizing.
 \begin{frame}[fragile]
 \frametitle{Line Profiler}
 
+
+\begin{block}{ \centering \LARGE Line Profiler }
+
+\centering \Large Fine Grain
+
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Line Profiler}
+
 \begin{itemize}
 
-\item line\_profiler is a third party profiling library.
+\item Why?
+\begin{itemize}
 
-\item pip install line\_profiler
+\item Sometimes function calls aren't enough information.
+\end{itemize}
+
+\item What?
+\begin{itemize}
 
 \item line-by-line stats on execution time.
 \end{itemize}
 
-\begin{Verbatim}[commandchars=\\\{\}]
+\item How?
+\begin{itemize}
 
+\item \DUroletitlereference{\$ pip install line\_profiler}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Usage and Output}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{p}{@}\PY{n}{profile}
+\PY{n}{def}\PY{+w}{ }\PY{n}{compute}\PY{p}{(}\PY{n}{tokens}\PY{p}{)}\PY{p}{:}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{op\PYZus{}s}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{tokens}\PY{p}{[}0\PY{p}{]}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{nums}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{map}\PY{p}{(}\PY{n}{int}\PY{p}{,}\PY{+w}{ }\PY{n}{tokens}\PY{p}{[}1\PY{p}{:}\PY{p}{]}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{k}{if}\PY{+w}{ }\PY{n}{op\PYZus{}s}\PY{+w}{ }\PY{o}{==}\PY{+w}{ }"\PY{n}{power}"\PY{p}{:}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{result}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{reduce}\PY{p}{(}\PY{n}{op}\PY{p}{.}\PY{n}{pow}\PY{p}{,}\PY{+w}{ }\PY{n}{nums}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{elif}\PY{+w}{ }\PY{n}{op\PYZus{}s}\PY{+w}{ }\PY{o}{==}\PY{+w}{ }"\PY{n}{plus}"\PY{p}{:}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{result}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{reduce}\PY{p}{(}\PY{n}{op}\PY{p}{.}\PY{n}{add}\PY{p}{,}\PY{+w}{ }\PY{n}{nums}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{k}{return}\PY{+w}{ }\PY{n}{result}
 \end{Verbatim}
 
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Usage and Output}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYZdl{}\PY{+w}{ }\PY{n}{kernprof}\PY{p}{.}\PY{n}{py}\PY{+w}{ }\PY{o}{-}\PY{n}{v}\PY{+w}{ }\PY{o}{-}\PY{n}{l}\PY{+w}{ }\PY{n}{compute}\PY{p}{.}\PY{n}{py}
+
+\PY{n}{Line}\PY{+w}{ }\PYZsh{}\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{Hits}\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{Time}\PY{+w}{ }\PY{+w}{ }\PY{n}{Per}\PY{+w}{ }\PY{n}{Hit}\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{c}{\PYZpc{}}\PY{+w}{ }\PY{c}{Time}\PY{+w}{ }\PY{+w}{ }\PY{c}{Line}\PY{+w}{ }\PY{c}{Contents}
+\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{p}{@}\PY{n}{profile}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }5\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{def}\PY{+w}{ }\PY{n}{compute}\PY{p}{(}\PY{n}{args}\PY{p}{)}\PY{p}{:}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }6\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }606\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }843\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{p}{.}4\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }2\PY{p}{.}9\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{op\PYZus{}s}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{args}\PY{p}{[}0\PY{p}{]}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }7\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }606\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }2607\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{p}{.}3\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }8\PY{p}{.}9\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{nums}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{map}\PY{p}{(}\PY{n}{int}\PY{p}{,}\PY{+w}{ }\PY{n}{args}\PY{p}{[}1\PY{p}{:}\PY{p}{]}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }8\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }606\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }873\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{p}{.}4\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }3\PY{p}{.}0\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{k}{if}\PY{+w}{ }\PY{n}{op\PYZus{}s}\PY{+w}{ }\PY{o}{==}\PY{+w}{ }"\PY{n}{power}"\PY{p}{:}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }9\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }101\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }20931\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }207\PY{p}{.}2\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }71\PY{p}{.}6\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{result}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{reduce}\PY{p}{(}\PY{n}{op}\PY{p}{.}\PY{n}{pow}\PY{p}{,}\PY{+w}{ }\PY{n}{nums}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }10\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }505\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }624\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{p}{.}2\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }2\PY{p}{.}1\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{elif}\PY{+w}{ }\PY{n}{op\PYZus{}s}\PY{+w}{ }\PY{o}{==}\PY{+w}{ }"\PY{n}{plus}"\PY{p}{:}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }11\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }101\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }224\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }2\PY{p}{.}2\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }0\PY{p}{.}8\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{result}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{reduce}\PY{p}{(}\PY{n}{op}\PY{p}{.}\PY{n}{add}\PY{p}{,}\PY{+w}{ }\PY{n}{nums}\PY{p}{)}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }12\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }606\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }794\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }1\PY{p}{.}3\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }2\PY{p}{.}7\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{k}{return}\PY{+w}{ }\PY{n}{result}
+\end{Verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Memory Profiler}
+
+
+\begin{block}{ \centering \LARGE Memory Profiler }
+
+\centering \Large Awesome - Experimental \& Slow
+
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -540,28 +671,48 @@ Clearly shows which parts are worth optimizing.
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Micro Benchmarks with timeit}
+\frametitle{Usage and Output}
 
-\begin{itemize}
-
-\item \DUroletitlereference{timeit} module is used to profile individual statements or blocks in the code.
-
-\item Runs the code multiple times to collect more data points.
-
-\item Resilient to OS noise.
-\end{itemize}
 
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{import}\PY{+w}{ }\PY{n}{timeit}
-\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{t}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{timeit}\PY{p}{.}\PY{n}{Timer}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{4000*234'}\PY{p}{)}
-\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{t}\PY{p}{.}\PY{n}{timeit}\PY{p}{(}1000\PY{p}{)}\PY{o}{/}1000
-6\PY{p}{.}198883056640625\PY{n}{e}\PY{o}{-}08
-\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{t}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{n}{timeit}\PY{p}{.}\PY{n}{Timer}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{lcm.ver\PYZus{}1(2000,3000)'}\PY{p}{,}
-\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{import}\PY{+w}{ }\PY{l+s}{lcm'}\PY{p}{)}
-\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{o}{\PYZgt{}}\PY{+w}{ }\PY{n}{t}\PY{p}{.}\PY{n}{timeit}\PY{p}{(}10000\PY{p}{)}\PY{o}{/}10000
-2\PY{p}{.}10111114120483397\PY{n}{e}\PY{o}{-}06
+\PY{p}{@}\PY{n}{profile}
+\PY{n}{def}\PY{+w}{ }\PY{n}{func}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{a}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{p}{[}0\PY{p}{]}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }10
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{b}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{p}{[}0\PY{p}{]}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }1000
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{c}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{p}{[}0\PY{p}{]}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }10000000
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{k}{return}\PY{+w}{ }\PY{n}{a}\PY{p}{,}\PY{+w}{ }\PY{n}{b}\PY{p}{,}\PY{+w}{ }\PY{n}{c}
 \end{Verbatim}
 
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Usage and Output}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYZdl{}\PY{+w}{ }\PY{n}{python}\PY{+w}{ }\PY{o}{-}\PY{n}{m}\PY{+w}{ }\PY{n}{memory\PYZus{}profiler}\PY{+w}{ }\PY{o}{-}\PY{n}{l}\PY{+w}{ }\PY{o}{-}\PY{n}{v}\PY{+w}{ }\PY{n}{mem\PYZus{}ex}\PY{p}{.}\PY{n}{py}
+
+\PY{n}{Line}\PY{+w}{ }\PYZsh{}\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{Mem}\PY{+w}{ }\PY{n}{usage}\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{Line}\PY{+w}{ }\PY{n}{Contents}
+\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{p}{=}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }3\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{p}{@}\PY{n}{profile}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }4\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }6\PY{p}{.}65\PY{+w}{ }\PY{n}{MB}\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{def}\PY{+w}{ }\PY{n}{func}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }5\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }6\PY{p}{.}66\PY{+w}{ }\PY{n}{MB}\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{a}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{p}{[}0\PY{p}{]}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }10
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }6\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }6\PY{p}{.}67\PY{+w}{ }\PY{n}{MB}\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{b}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{p}{[}0\PY{p}{]}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }1000
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }7\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }82\PY{p}{.}97\PY{+w}{ }\PY{n}{MB}\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{c}\PY{+w}{ }\PY{p}{=}\PY{+w}{ }\PY{p}{[}0\PY{p}{]}\PY{+w}{ }\PY{o}{*}\PY{+w}{ }10000000
+\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }8\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }82\PY{p}{.}97\PY{+w}{ }\PY{n}{MB}\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{k}{return}\PY{+w}{ }\PY{n}{a}\PY{p}{,}\PY{+w}{ }\PY{n}{b}\PY{p}{,}\PY{+w}{ }\PY{n}{c}
+\end{Verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{New Relic}
+
+
+\begin{block}{ \centering \LARGE Web Application Profiling }
+
+\centering \Large New Relic
+
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -571,7 +722,7 @@ Clearly shows which parts are worth optimizing.
 
 \item New Relic is a commercial offering that specializes in web app performance monitoring.
 
-\item Provides real-time statistics on production servers.
+\item Provides \emph{real-time} statistics on \emph{production} servers.
 \end{itemize}
 \end{frame}
 
@@ -580,14 +731,51 @@ Clearly shows which parts are worth optimizing.
 
 \begin{itemize}
 
-\item Requests and exceptions.
-
 \item Time spent in Python vs Servers vs Database.
 
 \item Slowest database queries.
 \end{itemize}
+\end{frame}
 
-\textbf{Questions?}
+\begin{frame}[fragile]
+\frametitle{timeit}
+
+
+\begin{block}{ \centering \LARGE Micro Benchmarks }
+
+\centering \Large timeit module
+
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Micro Benchmarks with timeit}
+
+\begin{itemize}
+
+\item \DUroletitlereference{timeit} module can be used to profile individual statements or blocks in the code.
+
+\item Runs the code multiple times to collect more data points.
+
+\item Turns off Garbage Collector for accuracy.
+\end{itemize}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYZdl{}\PY{+w}{ }\PY{n}{python}\PY{+w}{ }\PY{o}{-}\PY{n}{m}\PY{+w}{ }\PY{n}{timeit}\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{range(0,1000)'}
+100000\PY{+w}{ }\PY{n}{loops}\PY{p}{,}\PY{+w}{ }\PY{n}{best}\PY{+w}{ }\PY{n}{of}\PY{+w}{ }3\PY{p}{:}\PY{+w}{ }12\PY{+w}{ }\PY{n}{usec}\PY{+w}{ }\PY{n}{per}\PY{+w}{ }\PY{n}{loop}
+\PYZdl{}\PY{+w}{ }\PY{n}{python}\PY{+w}{ }\PY{o}{-}\PY{n}{m}\PY{+w}{ }\PY{n}{timeit}\PY{+w}{ }\PY{l+s}{'}\PY{l+s}{xrange(0,1000)'}
+1000000\PY{+w}{ }\PY{n}{loops}\PY{p}{,}\PY{+w}{ }\PY{n}{best}\PY{+w}{ }\PY{n}{of}\PY{+w}{ }3\PY{p}{:}\PY{+w}{ }0\PY{p}{.}253\PY{+w}{ }\PY{n}{usec}\PY{+w}{ }\PY{n}{per}\PY{+w}{ }\PY{n}{loop}
+\end{Verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Questions}
+
+
+\begin{block}{ \centering \LARGE Questions }
+
+\end{block}
 \end{frame}
 
 \end{document}

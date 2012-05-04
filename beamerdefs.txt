@@ -21,6 +21,32 @@
    }
 
 
+.. |centering| raw:: latex
+
+   \centering
+
+.. |large| raw:: latex
+
+   {\large
+   
+.. |end_large| raw:: latex
+
+   }
+
+
+.. |section<| raw:: latex 
+
+   \begin{block}{ \centering \LARGE
+
+.. |end_section| raw:: latex
+   
+   \end{block}
+
+.. |section_tag| raw:: latex
+
+   \centering \Large
+
+
 .. closed bracket
 .. ===========================
 
