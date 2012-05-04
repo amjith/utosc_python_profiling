@@ -4,9 +4,9 @@
 Python Profiling
 ================
 
-:Organization: UTOS
-:Author: Amjith Ramanujam
-:Date: @amjithr
+:Organization: Utah Open Source Conf
+:Author: Amjith Ramanujam (@amjithr)
+:Date: 2012
 
 
 Profiling a Python Script
@@ -455,21 +455,28 @@ Metrics
 Demo
 ----
 
-|section<| New Relic Demo |>|
+|section<| New Relic |>|
 
-|section_tag| http://productivemeter.herokuapp.com/productive
+|section_tag| Demo 
 
 |end_section|
-
-.. image:: new_relic.png
 
 Questions
 ---------
 
 |section<| Questions |>|
-slides : http://github.com/User
-twitter: @amjithr
 |end_section|
+
+slides : 
+
+- http://bit.ly/Izm3WI
+
+code : 
+
+- http://github.com/amjith/utosc_python_profiling
+
+twitter: @amjithr
+
 
 timeit
 ------
@@ -493,5 +500,4 @@ Micro Benchmarks with timeit
     100000 loops, best of 3: 12 usec per loop
     $ python -m timeit 'xrange(0,1000)'
     1000000 loops, best of 3: 0.253 usec per loop
-
 
