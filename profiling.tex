@@ -586,16 +586,16 @@ Clearly shows which parts are worth optimizing.
 
 \begin{itemize}
 
-\item Why?
-\begin{itemize}
-
-\item Sometimes function calls aren't enough information.
-\end{itemize}
-
 \item What?
 \begin{itemize}
 
 \item line-by-line stats on execution time.
+\end{itemize}
+
+\item Why?
+\begin{itemize}
+
+\item Sometimes function calls aren't enough information.
 \end{itemize}
 
 \item How?
@@ -629,7 +629,7 @@ Clearly shows which parts are worth optimizing.
 
 
 \begin{Verbatim}[commandchars=\\\{\}]
-\PYZdl{}\PY{+w}{ }\PY{n}{kernprof}\PY{p}{.}\PY{n}{py}\PY{+w}{ }\PY{o}{-}\PY{n}{v}\PY{+w}{ }\PY{o}{-}\PY{n}{l}\PY{+w}{ }\PY{n}{compute}\PY{p}{.}\PY{n}{py}
+\PYZdl{}\PY{+w}{ }\PY{n}{kernprof}\PY{p}{.}\PY{n}{py}\PY{+w}{ }\PY{o}{-}\PY{n}{v}\PY{+w}{ }\PY{o}{-}\PY{n}{l}\PY{+w}{ }\PY{n}{compute}\PY{p}{.}\PY{n}{py}\PY{+w}{ }\PY{n}{data}\PY{p}{.}\PY{n}{txt}
 
 \PY{n}{Line}\PY{+w}{ }\PYZsh{}\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{Hits}\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{n}{Time}\PY{+w}{ }\PY{+w}{ }\PY{n}{Per}\PY{+w}{ }\PY{n}{Hit}\PY{+w}{ }\PY{+w}{ }\PY{+w}{ }\PY{c}{\PYZpc{}}\PY{+w}{ }\PY{c}{Time}\PY{+w}{ }\PY{+w}{ }\PY{c}{Line}\PY{+w}{ }\PY{c}{Contents}
 \PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}\PY{o}{==}
@@ -731,10 +731,37 @@ Clearly shows which parts are worth optimizing.
 
 \begin{itemize}
 
-\item Time spent in Python vs Servers vs Database.
+\item Time spent in Python vs Database.
 
 \item Slowest database queries.
+
+\item Water-fall graph of Web Transactions.
+
+\item etc...
 \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Demo}
+
+
+\begin{block}{ \centering \LARGE New Relic Demo }
+
+\centering \Large \url{http://productivemeter.herokuapp.com/productive}
+
+\end{block}
+
+\noindent\makebox[\textwidth][c]{\includegraphics[height=0.75\textheight]{new_relic.png}}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Questions}
+
+
+\begin{block}{ \centering \LARGE Questions }
+slides : \url{http://github.com/User}
+twitter: @amjithr
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -767,15 +794,6 @@ Clearly shows which parts are worth optimizing.
 1000000\PY{+w}{ }\PY{n}{loops}\PY{p}{,}\PY{+w}{ }\PY{n}{best}\PY{+w}{ }\PY{n}{of}\PY{+w}{ }3\PY{p}{:}\PY{+w}{ }0\PY{p}{.}253\PY{+w}{ }\PY{n}{usec}\PY{+w}{ }\PY{n}{per}\PY{+w}{ }\PY{n}{loop}
 \end{Verbatim}
 
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Questions}
-
-
-\begin{block}{ \centering \LARGE Questions }
-
-\end{block}
 \end{frame}
 
 \end{document}
